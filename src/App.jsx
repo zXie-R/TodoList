@@ -12,18 +12,22 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    axios.get('https://localhost:5001/api/TodoItems')
       .then(res => setTodos(res.data))
   }, []);
 
-  const markComplete = (id) => {
+  const markComplete = (item) => {
     return () => {
-      setTodos(todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      }));
+      axios.put(
+        `https://localhost:5001/api/TodoItems/${item.id}`, 
+        { ...item, completed: !item.completed }).then(res => {
+          setTodos(todos.map(todo => {
+            if (todo.id === item.id) {
+              todo.completed = !todo.completed;
+            }
+            return todo;
+          }));
+        });
     }
   };
 
