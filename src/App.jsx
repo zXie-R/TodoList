@@ -12,14 +12,14 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    axios.get('https://localhost:5001/api/TodoItems')
+    axios.get('https://todoapi00.azurewebsites.net/api/Todoitems')
       .then(res => setTodos(res.data))
   }, []);
 
   const markComplete = (item) => {
     return () => {
       axios.put(
-        `https://localhost:5001/api/TodoItems/${item.id}`, 
+        `https://todoapi00.azurewebsites.net/api/TodoItems/${item.id}`, 
         { ...item, completed: !item.completed }).then(res => {
           setTodos(todos.map(todo => {
             if (todo.id === item.id) {
@@ -33,14 +33,14 @@ function App() {
 
   const delTodo = (id) => {
     return () => {
-      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`).then(res => {
+      axios.delete(`https://todoapi00.azurewebsites.net/api/TodoItems/${id}`).then(res => {
         setTodos(todos.filter((todo) => todo.id !== id));
       });
     }
   }
 
   const addTodo = (title) => {
-    axios.post('https://jsonplaceholder.typicode.com/todos', {
+    axios.post('https://todoapi00.azurewebsites.net/api/TodoItems', {
       title,
       completed: false
     }).then(res => {
