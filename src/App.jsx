@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import About from './components/About';
-import {v4 as uuid } from 'uuid';
 import axios from 'axios';
 import './App.css';
 
