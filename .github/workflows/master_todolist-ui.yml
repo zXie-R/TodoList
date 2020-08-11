@@ -32,4 +32,4 @@ jobs:
         app-name: 'todolist-ui'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_4a9a481df8ad49469d38ac71ec4ee454 }}
-        package: ./build
+        package: /build
